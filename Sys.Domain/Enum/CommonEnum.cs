@@ -14,7 +14,7 @@ namespace Sys.Domain
     public enum MenuTypeEnum
     { 
         目录 = 0,
-        菜单 = 1,
+        菜单 = 1
     }
     public enum ApiTypeEnum
     { 
