@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfApiRoute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApiRoute>
+    <!--登陆-->
+    <Code>login</Code>
+    <Name>登录</Name>
+    <MethodName>Login</MethodName>
+    <AssemblyName>Sys.IService</AssemblyName>
+    <ClassName>Sys.IService.IUserService</ClassName>
+  </ApiRoute>
+</ArrayOfApiRoute>
