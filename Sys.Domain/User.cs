@@ -17,19 +17,7 @@ namespace Sys.Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Api = new HashSet<Api>();
-            this.Api1 = new HashSet<Api>();
-            this.Menu = new HashSet<Menu>();
-            this.Menu1 = new HashSet<Menu>();
-            this.Module = new HashSet<Module>();
-            this.Module1 = new HashSet<Module>();
-            this.Operate = new HashSet<Operate>();
-            this.Operate1 = new HashSet<Operate>();
-            this.Role = new HashSet<Role>();
-            this.Role1 = new HashSet<Role>();
             this.Role_User = new HashSet<Role_User>();
-            this.User1 = new HashSet<User>();
-            this.User11 = new HashSet<User>();
         }
     
         public int Id { get; set; }
@@ -40,37 +28,13 @@ namespace Sys.Domain
         public bool IsEnable { get; set; }
         public bool IsDel { get; set; }
         public int CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
+        public string UpdatedByName { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Api> Api { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Api> Api1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Menu> Menu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Menu> Menu1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Module> Module { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Module> Module1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operate> Operate { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operate> Operate1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role_User> Role_User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User1 { get; set; }
-        public virtual User User2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User11 { get; set; }
-        public virtual User User3 { get; set; }
     }
 }

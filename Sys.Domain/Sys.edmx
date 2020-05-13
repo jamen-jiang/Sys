@@ -15,10 +15,13 @@
           <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MethodName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ServiceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
           <Property Name="IsEnable" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Employee">
@@ -29,8 +32,10 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Job">
@@ -42,11 +47,13 @@
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
-          <Property Name="IsDel" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -62,9 +69,11 @@
           <Property Name="Sort" Type="int" />
           <Property Name="VueUri" Type="nvarchar" MaxLength="50" />
           <Property Name="IsEnable" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Module">
@@ -78,8 +87,10 @@
           <Property Name="Sort" Type="int" />
           <Property Name="IsEnable" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Operate">
@@ -98,8 +109,10 @@
           <Property Name="IsPublic" Type="bit" Nullable="false" />
           <Property Name="IsEnable" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Privilege">
@@ -123,8 +136,10 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Role_User">
@@ -147,34 +162,12 @@
           <Property Name="IsEnable" Type="bit" Nullable="false" />
           <Property Name="IsDel" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedByName" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
-        <Association Name="FK_Api_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Api" Type="Self.Api" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Api">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Api_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Api" Type="Self.Api" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Api">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Menu_Module">
           <End Role="Module" Type="Self.Module" Multiplicity="1" />
           <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
@@ -184,54 +177,6 @@
             </Principal>
             <Dependent Role="Menu">
               <PropertyRef Name="ModuleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menu_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Menu">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menu_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Menu">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Module_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Module" Type="Self.Module" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Module">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Module_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Module" Type="Self.Module" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Module">
-              <PropertyRef Name="UpdatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,54 +204,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Operate_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Operate" Type="Self.Operate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Operate">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Operate_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Operate" Type="Self.Operate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Operate">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Role_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Role" Type="Self.Role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Role">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Role_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Role" Type="Self.Role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Role">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RoleUser_Role_RoleId">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="Role_User" Type="Self.Role_User" Multiplicity="*" />
@@ -331,30 +228,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_User_CreatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="User1" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User1">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_User_UpdatedBy">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="User1" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User1">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SysDomainStoreContainer">
           <EntitySet Name="Api" EntityType="Self.Api" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -366,33 +239,9 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_User" EntityType="Self.Role_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Api_User_CreatedBy" Association="Self.FK_Api_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Api" EntitySet="Api" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Api_User_UpdatedBy" Association="Self.FK_Api_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Api" EntitySet="Api" />
-          </AssociationSet>
           <AssociationSet Name="FK_Menu_Module" Association="Self.FK_Menu_Module">
             <End Role="Module" EntitySet="Module" />
             <End Role="Menu" EntitySet="Menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menu_User_CreatedBy" Association="Self.FK_Menu_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Menu" EntitySet="Menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menu_User_UpdatedBy" Association="Self.FK_Menu_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Menu" EntitySet="Menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Module_User_CreatedBy" Association="Self.FK_Module_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Module" EntitySet="Module" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Module_User_UpdatedBy" Association="Self.FK_Module_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Module" EntitySet="Module" />
           </AssociationSet>
           <AssociationSet Name="FK_Operate_Api_ApiId" Association="Self.FK_Operate_Api_ApiId">
             <End Role="Api" EntitySet="Api" />
@@ -402,22 +251,6 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="Operate" EntitySet="Operate" />
           </AssociationSet>
-          <AssociationSet Name="FK_Operate_User_CreatedBy" Association="Self.FK_Operate_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Operate" EntitySet="Operate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Operate_User_UpdatedBy" Association="Self.FK_Operate_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Operate" EntitySet="Operate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Role_User_CreatedBy" Association="Self.FK_Role_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Role" EntitySet="Role" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Role_User_UpdatedBy" Association="Self.FK_Role_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Role" EntitySet="Role" />
-          </AssociationSet>
           <AssociationSet Name="FK_RoleUser_Role_RoleId" Association="Self.FK_RoleUser_Role_RoleId">
             <End Role="Role" EntitySet="Role" />
             <End Role="Role_User" EntitySet="Role_User" />
@@ -425,14 +258,6 @@
           <AssociationSet Name="FK_RoleUser_User_UserId" Association="Self.FK_RoleUser_User_UserId">
             <End Role="User" EntitySet="User" />
             <End Role="Role_User" EntitySet="Role_User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_User_CreatedBy" Association="Self.FK_User_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="User1" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_User_UpdatedBy" Association="Self.FK_User_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="User1" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -450,14 +275,6 @@
           <EntitySet Name="Role" EntityType="Sys.Domain.Role" />
           <EntitySet Name="Role_User" EntityType="Sys.Domain.Role_User" />
           <EntitySet Name="User" EntityType="Sys.Domain.User" />
-          <AssociationSet Name="FK_Api_User_CreatedBy" Association="Sys.Domain.FK_Api_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Api" EntitySet="Api" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Api_User_UpdatedBy" Association="Sys.Domain.FK_Api_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Api" EntitySet="Api" />
-          </AssociationSet>
           <AssociationSet Name="FK_Operate_Api_ApiId" Association="Sys.Domain.FK_Operate_Api_ApiId">
             <End Role="Api" EntitySet="Api" />
             <End Role="Operate" EntitySet="Operate" />
@@ -466,41 +283,9 @@
             <End Role="Module" EntitySet="Module" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menu_User_CreatedBy" Association="Sys.Domain.FK_Menu_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Menu" EntitySet="Menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menu_User_UpdatedBy" Association="Sys.Domain.FK_Menu_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Menu" EntitySet="Menu" />
-          </AssociationSet>
           <AssociationSet Name="FK_Operate_Menu_MenuId" Association="Sys.Domain.FK_Operate_Menu_MenuId">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="Operate" EntitySet="Operate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Module_User_CreatedBy" Association="Sys.Domain.FK_Module_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Module" EntitySet="Module" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Module_User_UpdatedBy" Association="Sys.Domain.FK_Module_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Module" EntitySet="Module" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Operate_User_CreatedBy" Association="Sys.Domain.FK_Operate_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Operate" EntitySet="Operate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Operate_User_UpdatedBy" Association="Sys.Domain.FK_Operate_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Operate" EntitySet="Operate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Role_User_CreatedBy" Association="Sys.Domain.FK_Role_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Role" EntitySet="Role" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Role_User_UpdatedBy" Association="Sys.Domain.FK_Role_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="Role" EntitySet="Role" />
           </AssociationSet>
           <AssociationSet Name="FK_RoleUser_Role_RoleId" Association="Sys.Domain.FK_RoleUser_Role_RoleId">
             <End Role="Role" EntitySet="Role" />
@@ -509,14 +294,6 @@
           <AssociationSet Name="FK_RoleUser_User_UserId" Association="Sys.Domain.FK_RoleUser_User_UserId">
             <End Role="User" EntitySet="User" />
             <End Role="Role_User" EntitySet="Role_User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_User_CreatedBy" Association="Sys.Domain.FK_User_User_CreatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="User1" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_User_UpdatedBy" Association="Sys.Domain.FK_User_User_UpdatedBy">
-            <End Role="User" EntitySet="User" />
-            <End Role="User1" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Api">
@@ -529,13 +306,14 @@
           <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MethodName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Sys.Domain.FK_Api_User_CreatedBy" FromRole="Api" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_Api_User_UpdatedBy" FromRole="Api" ToRole="User" />
           <NavigationProperty Name="Operate" Relationship="Sys.Domain.FK_Operate_Api_ApiId" FromRole="Api" ToRole="Operate" />
         </EntityType>
         <EntityType Name="Employee">
@@ -546,8 +324,10 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Job">
@@ -559,11 +339,13 @@
           <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="IsDel" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -579,13 +361,13 @@
           <Property Name="Sort" Type="Int32" />
           <Property Name="VueUri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Module" Relationship="Sys.Domain.FK_Menu_Module" FromRole="Menu" ToRole="Module" />
-          <NavigationProperty Name="User" Relationship="Sys.Domain.FK_Menu_User_CreatedBy" FromRole="Menu" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_Menu_User_UpdatedBy" FromRole="Menu" ToRole="User" />
           <NavigationProperty Name="Operate" Relationship="Sys.Domain.FK_Operate_Menu_MenuId" FromRole="Menu" ToRole="Operate" />
         </EntityType>
         <EntityType Name="Module">
@@ -599,12 +381,12 @@
           <Property Name="Sort" Type="Int32" />
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Menu" Relationship="Sys.Domain.FK_Menu_Module" FromRole="Module" ToRole="Menu" />
-          <NavigationProperty Name="User" Relationship="Sys.Domain.FK_Module_User_CreatedBy" FromRole="Module" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_Module_User_UpdatedBy" FromRole="Module" ToRole="User" />
         </EntityType>
         <EntityType Name="Operate">
           <Key>
@@ -622,13 +404,13 @@
           <Property Name="IsPublic" Type="Boolean" Nullable="false" />
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Api" Relationship="Sys.Domain.FK_Operate_Api_ApiId" FromRole="Operate" ToRole="Api" />
           <NavigationProperty Name="Menu" Relationship="Sys.Domain.FK_Operate_Menu_MenuId" FromRole="Operate" ToRole="Menu" />
-          <NavigationProperty Name="User" Relationship="Sys.Domain.FK_Operate_User_CreatedBy" FromRole="Operate" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_Operate_User_UpdatedBy" FromRole="Operate" ToRole="User" />
         </EntityType>
         <EntityType Name="Privilege">
           <Key>
@@ -651,11 +433,11 @@
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Sys.Domain.FK_Role_User_CreatedBy" FromRole="Role" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_Role_User_UpdatedBy" FromRole="Role" ToRole="User" />
           <NavigationProperty Name="Role_User" Relationship="Sys.Domain.FK_RoleUser_Role_RoleId" FromRole="Role" ToRole="Role_User" />
         </EntityType>
         <EntityType Name="Role_User">
@@ -680,49 +462,13 @@
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <Property Name="IsDel" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Api" Relationship="Sys.Domain.FK_Api_User_CreatedBy" FromRole="User" ToRole="Api" />
-          <NavigationProperty Name="Api1" Relationship="Sys.Domain.FK_Api_User_UpdatedBy" FromRole="User" ToRole="Api" />
-          <NavigationProperty Name="Menu" Relationship="Sys.Domain.FK_Menu_User_CreatedBy" FromRole="User" ToRole="Menu" />
-          <NavigationProperty Name="Menu1" Relationship="Sys.Domain.FK_Menu_User_UpdatedBy" FromRole="User" ToRole="Menu" />
-          <NavigationProperty Name="Module" Relationship="Sys.Domain.FK_Module_User_CreatedBy" FromRole="User" ToRole="Module" />
-          <NavigationProperty Name="Module1" Relationship="Sys.Domain.FK_Module_User_UpdatedBy" FromRole="User" ToRole="Module" />
-          <NavigationProperty Name="Operate" Relationship="Sys.Domain.FK_Operate_User_CreatedBy" FromRole="User" ToRole="Operate" />
-          <NavigationProperty Name="Operate1" Relationship="Sys.Domain.FK_Operate_User_UpdatedBy" FromRole="User" ToRole="Operate" />
-          <NavigationProperty Name="Role" Relationship="Sys.Domain.FK_Role_User_CreatedBy" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Role1" Relationship="Sys.Domain.FK_Role_User_UpdatedBy" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Role_User" Relationship="Sys.Domain.FK_RoleUser_User_UserId" FromRole="User" ToRole="Role_User" />
-          <NavigationProperty Name="User1" Relationship="Sys.Domain.FK_User_User_CreatedBy" FromRole="User" ToRole="User1" />
-          <NavigationProperty Name="User2" Relationship="Sys.Domain.FK_User_User_CreatedBy" FromRole="User1" ToRole="User" />
-          <NavigationProperty Name="User11" Relationship="Sys.Domain.FK_User_User_UpdatedBy" FromRole="User" ToRole="User1" />
-          <NavigationProperty Name="User3" Relationship="Sys.Domain.FK_User_User_UpdatedBy" FromRole="User1" ToRole="User" />
         </EntityType>
-        <Association Name="FK_Api_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.Api" Role="Api" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Api">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Api_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.Api" Role="Api" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Api">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Operate_Api_ApiId">
           <End Type="Sys.Domain.Api" Role="Api" Multiplicity="0..1" />
           <End Type="Sys.Domain.Operate" Role="Operate" Multiplicity="*" />
@@ -747,30 +493,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menu_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.Menu" Role="Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Menu">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menu_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.Menu" Role="Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Menu">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Operate_Menu_MenuId">
           <End Type="Sys.Domain.Menu" Role="Menu" Multiplicity="0..1" />
           <End Type="Sys.Domain.Operate" Role="Operate" Multiplicity="*" />
@@ -780,78 +502,6 @@
             </Principal>
             <Dependent Role="Operate">
               <PropertyRef Name="MenuId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Module_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.Module" Role="Module" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Module">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Module_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.Module" Role="Module" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Module">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Operate_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.Operate" Role="Operate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Operate">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Operate_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.Operate" Role="Operate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Operate">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Role_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.Role" Role="Role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Role">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Role_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.Role" Role="Role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Role">
-              <PropertyRef Name="UpdatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -879,31 +529,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_User_CreatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="1" />
-          <End Type="Sys.Domain.User" Role="User1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User1">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_User_UpdatedBy">
-          <End Type="Sys.Domain.User" Role="User" Multiplicity="0..1" />
-          <End Type="Sys.Domain.User" Role="User1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User1">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -913,10 +539,13 @@
             <EntityTypeMapping TypeName="Sys.Domain.Api">
               <MappingFragment StoreEntitySet="Api">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="MethodName" ColumnName="MethodName" />
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
@@ -930,8 +559,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -942,11 +573,13 @@
           <EntitySetMapping Name="Job">
             <EntityTypeMapping TypeName="Sys.Domain.Job">
               <MappingFragment StoreEntitySet="Job">
-                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
@@ -959,8 +592,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.Menu">
               <MappingFragment StoreEntitySet="Menu">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="VueUri" ColumnName="VueUri" />
@@ -979,8 +614,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.Module">
               <MappingFragment StoreEntitySet="Module">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
@@ -995,8 +632,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.Operate">
               <MappingFragment StoreEntitySet="Operate">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
@@ -1028,8 +667,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -1052,8 +693,10 @@
             <EntityTypeMapping TypeName="Sys.Domain.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedByName" ColumnName="UpdatedByName" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsDel" ColumnName="IsDel" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />

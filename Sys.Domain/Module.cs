@@ -27,13 +27,13 @@ namespace Sys.Domain
         public Nullable<int> Sort { get; set; }
         public bool IsEnable { get; set; }
         public int CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
+        public string UpdatedByName { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Menu> Menu { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

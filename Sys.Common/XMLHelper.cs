@@ -83,7 +83,6 @@ namespace Sys.Common
         public static void SerializeXML<T>(T obj, string filePath)
         {
             FileStream stream = null;
-            XmlSerializer serializer = null;
             try
             {
                 stream = new FileStream(filePath, FileMode.OpenOrCreate);
@@ -100,7 +99,6 @@ namespace Sys.Common
                 {
                     stream.Close();
                 }
-                serializer = null;
             }
         }
 

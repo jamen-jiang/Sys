@@ -19,10 +19,12 @@ namespace Sys.Domain
         public int GroupId { get; set; }
         public string Name { get; set; }
         public string Remark { get; set; }
+        public bool IsEnable { get; set; }
         public int CreatedBy { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public string CreatedByName { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
+        public string UpdatedByName { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public bool IsDel { get; set; }
     }
 }

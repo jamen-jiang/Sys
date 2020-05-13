@@ -15,15 +15,15 @@ namespace Sys.Permission.Controllers
     public class BaseController : Controller
     {
         private IApiService apiSvc = Container.Resolve<IApiService>();
-        protected HttpContextBase HttpContext
-        {
-            get
-            {
-                HttpContextWrapper context =
-                new HttpContextWrapper(System.Web.HttpContext.Current);
-                return context;
-            }
-        }
+        //protected HttpContextBase HttpContext
+        //{
+        //    get
+        //    {
+        //        HttpContextWrapper context =
+        //        new HttpContextWrapper(System.Web.HttpContext.Current);
+        //        return context;
+        //    }
+        //}
         protected List<ApiRoute> ApiRouteList 
         {
             get
@@ -86,18 +86,12 @@ namespace Sys.Permission.Controllers
             result.HttpApiResponse.IsSuccess = false;
             if (ex is ApplicationException)
             {
-                result.HttpApiResponse.StatusCode = HttpStatusCode.FAIL_APP;
+                result.HttpApiResponse.StatusCode = (int)StatusCodeEnum.FAIL_APP;
                 result.HttpApiResponse.Message = ex.Message;
-                int code;
-                if (int.TryParse(ex.Message, out code))
-                {
-                    result.HttpApiResponse.StatusCode = code;
-                    result.HttpApiResponse.Message = ex.Message;
-                }
             }
             else
             {
-                result.HttpApiResponse.StatusCode = HttpStatusCode.FAIL_EXCEPTION;
+                result.HttpApiResponse.StatusCode = (int)StatusCodeEnum.FAIL_EXCEPTION;
                 result.HttpApiResponse.Message = "系统错误";
             }
             return result;

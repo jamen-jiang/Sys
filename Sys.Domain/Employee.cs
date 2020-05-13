@@ -18,8 +18,10 @@ namespace Sys.Domain
         public string Name { get; set; }
         public string Remark { get; set; }
         public int CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
+        public string UpdatedByName { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     }
 }

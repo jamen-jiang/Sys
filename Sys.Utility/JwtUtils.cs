@@ -11,12 +11,14 @@ using System.Threading.Tasks;
 
 namespace Sys.Utility
 {
-    public enum JwtErrorEnum
+    public enum JwtStatusEnum
     {
+        [Description("成功")]
+        Success = 0,
         [Description("Token失效")]
-        TokenExpired = 0,
+        TokenExpired = 1,
         [Description("其他")]
-        Other = 1
+        Other = 2
     }
     public class JwtUtils
     {
@@ -51,13 +53,12 @@ namespace Sys.Utility
             var token = encoder.Encode(payload, secret);
             return token;
         }
-
         /// <summary>
         /// 根据jwtToken  获取实体
         /// </summary>
         /// <param name="token">jwtToken</param>
         /// <returns></returns>
-        public static T GetJwtDecode<T>(string token)
+        public static bool TryGetJwtDecode<T>(string token,out T payload)
         {
             try
             {
@@ -67,12 +68,13 @@ namespace Sys.Utility
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 IJwtAlgorithm jwtAlgorithm = new HMACSHA256Algorithm();
                 IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder, jwtAlgorithm);
-                T payload = decoder.DecodeToObject<T>(token, secret, verify: true);//token为之前生成的字符串
-                return payload;
+                payload = decoder.DecodeToObject<T>(token, secret, verify: true);//token为之前生成的字符串
+                return true;
             }
-            catch (TokenExpiredException ex)
+            catch (TokenExpiredException)
             {
-                throw new ApplicationException("1");
+                payload = default(T);
+                return false;
             }
             //catch (SignatureVerificationException ex)
             //{

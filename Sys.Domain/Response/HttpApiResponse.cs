@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,67 +26,50 @@ namespace Sys.Domain
         public HttpApiResponse()
         {
             this.IsSuccess = true;
-            this.StatusCode = HttpStatusCode.SUCCESS;
+            this.StatusCode = (int)StatusCodeEnum.SUCCESS;
+        }
+        public HttpApiResponse(int errorCode)
+        {
+            this.IsSuccess = false;
+            this.StatusCode = errorCode;
         }
     }
-    /// <summary>
-    /// 状态
-    /// </summary>
-    public struct HttpStatusCode
+    public enum StatusCodeEnum
     {
         /// <summary>
         /// 成功
         /// </summary>
-        public static int SUCCESS = 200;
+        [Description("成功")]
+        SUCCESS = 200,
         /// <summary>
         /// 令牌无效
         /// </summary>
-        public static int FAIL_TOKEN_UNVALID = 0;
+        [Description("令牌无效")]
+        FAIL_TOKEN_UNVALID = 0,
         /// <summary>
         /// 令牌过期
         /// </summary>
-        public static int EXPIRED_TOKEN_UNVALID = 1;
+        [Description("令牌过期")]
+        EXPIRED_TOKEN_UNVALID = 1,
         /// <summary>
-        /// 没权限访问
+        /// 没访问权限
         /// </summary>
-        public static int FAIL_PERMISSION  = 2;
+        [Description("没访问权限")]
+        FAIL_PERMISSION = 2,
         /// <summary>
         /// 应用程序错误
         /// </summary>
-        public static int FAIL_APP = 3;
+        [Description("应用程序错误")]
+        FAIL_APP = 3,
         /// <summary>
         /// 系统异常
         /// </summary>
-        public static int FAIL_EXCEPTION = 4;
+        [Description("系统异常")]
+        FAIL_EXCEPTION = 4,
         /// <summary>
         /// 403
         /// </summary>
-        public static int FAIL_CODE = 403;
-    }
-    public enum StatusCode
-    {
-        /// <summary>
-        /// 成功
-        /// </summary>
-        [JsonProperty("1000")]
-        Success = 1000,
-
-        /// <summary>
-        /// 登录超时,需重新登录
-        /// </summary>
-        [JsonProperty("2000")]
-        NeedLogin = 2000,
-
-        /// <summary>
-        /// 程序异常
-        /// </summary>
-        [JsonProperty("3000")]
-        Exception = 3000,
-
-        /// <summary>
-        /// 系统错误
-        /// </summary>
-        [JsonProperty("4000")]
-        SysError = 4000
+        [Description("403")]
+        FAIL_CODE = 403
     }
 }

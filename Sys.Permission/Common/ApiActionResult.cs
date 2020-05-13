@@ -33,5 +33,15 @@ namespace Sys.Permission
             this.HttpApiResponse = new HttpApiResponse();
             this.Encoder = Encoding.UTF8;
         }
+        protected ApiActionResult(int errorCode)
+        {
+            this.HttpApiResponse = new HttpApiResponse(errorCode);
+            this.Encoder = Encoding.UTF8;
+        }
+        public static ApiActionResult ErrorResult(int errorCode)
+        {
+            ApiActionResult result = new ApiActionResult(errorCode);
+            return result;
+        }
     }
 }

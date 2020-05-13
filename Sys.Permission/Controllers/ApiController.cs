@@ -23,34 +23,43 @@ namespace Sys.Permission.Controllers
         /// <returns></returns>
         public ActionResult ProcessRequest(string code , FormCollection fc)
         {
-            HttpApiResponse response = new HttpApiResponse();
             string token = Request.Headers.Get("token");
             if (string.IsNullOrEmpty(code))
-                throw new ApplicationException(HttpStatusCode.FAIL_CODE.ToString());
+            {
+               return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_CODE);
+            }
             ApiRoute api = ApiRouteList.Where(w => w.Code == code).FirstOrDefault();
             if (api == null)
-                throw new ApplicationException(HttpStatusCode.FAIL_CODE.ToString());
+            {
+                return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_CODE);
+            }
             if (!api.IsPublic)
             {
                 if (token == null)
-                    throw new ApplicationException(HttpStatusCode.FAIL_TOKEN_UNVALID.ToString());
-                Payload payload = JwtUtils.GetJwtDecode<Payload>(token);
+                {
+                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_TOKEN_UNVALID);
+                }
+                Payload payload;
+                if (!JwtUtils.TryGetJwtDecode<Payload>(token, out payload))
+                {
+                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.EXPIRED_TOKEN_UNVALID);
+                }
                 TokenSession ts = Helper.Deserialize<TokenSession>(payload.data.ToString());
                 int count = ts.ApiRouteList.Count(c => c.Code == code);
                 if (count <= 0)
-                    throw new ApplicationException(HttpStatusCode.FAIL_PERMISSION.ToString());
+                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_PERMISSION);
                 fc.Add("UserId", ts.UserId.ToString());
             }
             foreach (string key in Request.QueryString.AllKeys)
             {
                 fc.Add(key, Request.QueryString[key]);
             }
-            
             Dictionary<string, object> dict = new Dictionary<string, object>();
             fc.CopyTo(dict);
             object r = CmdSvc.Execute(api, dict);
-            response = r as HttpApiResponse;
             ApiActionResult result = new ApiActionResult();
+            HttpApiResponse response = new HttpApiResponse();
+            response = r as HttpApiResponse;
             if (response == null)
             {
                 result.HttpApiResponse.Data = r;
