@@ -94,7 +94,7 @@ namespace Sys.Service
                             tree.MenuTreeList.Add(mtree);
                         }
                     }
-                    TokenSession ts = new TokenSession(user.Id, apiList);
+                    TokenSession ts = new TokenSession(user.Id);
                     Payload payload = new Payload(ts);
                     string token = JwtUtils.SetJwtEncode(payload);
                     ResponseLogin response = new ResponseLogin();

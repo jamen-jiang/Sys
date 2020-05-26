@@ -12,13 +12,11 @@ namespace Sys.IService
         /// <summary>
         /// 获取模块树
         /// </summary>
-        /// <param name="request"></param>
         /// <returns></returns>
-        ResponseGetModuleTree GetModuleTree(HttpApiRequest request);
+        ApiResponse GetModuleTree();
         /// <summary>
         /// 添加模块
         /// </summary>
-        /// <param name="request"></param>
-        void AddModule(RequestEditModule request);
+        void AddModule();
     }
 }

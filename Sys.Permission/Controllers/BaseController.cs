@@ -24,24 +24,24 @@ namespace Sys.Permission.Controllers
         //        return context;
         //    }
         //}
-        protected List<ApiRoute> ApiRouteList 
-        {
-            get
-            {
-                if (HttpSession.Get(Config.API_KEY) != null)
-                    return HttpSession.Get(Config.API_KEY) as List<ApiRoute>;
-                else
-                    return null;
-            }
-            set
-            {
-                HttpSession.Set(Config.API_KEY, value);
-            }
-        }
-        public BaseController()
-        {
-            this.GetApiRoute();
-        }
+        //protected List<ApiRoute> ApiRouteList 
+        //{
+        //    get
+        //    {
+        //        if (HttpSession.Get(Config.API_KEY) != null)
+        //            return HttpSession.Get(Config.API_KEY) as List<ApiRoute>;
+        //        else
+        //            return null;
+        //    }
+        //    set
+        //    {
+        //        HttpSession.Set(Config.API_KEY, value);
+        //    }
+        //}
+        //public BaseController()
+        //{
+        //    this.GetApiRoute();
+        //}
         //protected override void Initialize(RequestContext requestContext)
         //{
         //    base.Initialize(requestContext);
@@ -62,7 +62,7 @@ namespace Sys.Permission.Controllers
                 {
                     
                 }
-                else if (ex is ApplicationException)
+                else if (ex is ApiException)
                 {
                     break;
                 }
@@ -83,41 +83,41 @@ namespace Sys.Permission.Controllers
         protected virtual ActionResult ExceptionProcess(Exception ex)
         {
             ApiActionResult result = new ApiActionResult();
-            result.HttpApiResponse.IsSuccess = false;
-            if (ex is ApplicationException)
+            if (ex is ApiException)
             {
-                result.HttpApiResponse.StatusCode = (int)StatusCodeEnum.FAIL_APP;
-                result.HttpApiResponse.Message = ex.Message;
+                ApiException apiException = ex as ApiException;
+                result.Response.Status = apiException.Code;
+                result.Response.Message = apiException.Message;
             }
             else
             {
-                result.HttpApiResponse.StatusCode = (int)StatusCodeEnum.FAIL_EXCEPTION;
-                result.HttpApiResponse.Message = "系统错误";
+                result.Response.Status = (int)ApiStatusEnum.FAIL_EXCEPTION;
+                result.Response.Message = "系统错误";
             }
             return result;
         }
-        public void GetApiRoute()
-        {
-            if (this.ApiRouteList != null)
-                return;
-            //string dir = HttpContext.Server.MapPath(string.Format("{0}/Config/ApiRoute", HttpContext.Request.ApplicationPath));
-            //string[] files = Directory.GetFiles(dir);
-            //List<ApiRoute> li = new List<ApiRoute>();
-            //foreach (string file in files)
-            //{
-            //    if (file.IndexOf(".xml") == -1)
-            //        continue;
-            //    li.AddRange(XMLHelper.DeSerializeXML<List<ApiRoute>>(file));
-            //    try
-            //    {
-            //        li.AddRange(XMLHelper.DeSerializeXML<List<ApiRoute>>(file));
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw new ApplicationException(file + "文件格式错误");
-            //    }
-            //}
-            this.ApiRouteList = apiSvc.GetApiRouteList();
-        }
+        //public void GetApiRoute()
+        //{
+        //    if (this.ApiRouteList != null)
+        //        return;
+        //    //string dir = HttpContext.Server.MapPath(string.Format("{0}/Config/ApiRoute", HttpContext.Request.ApplicationPath));
+        //    //string[] files = Directory.GetFiles(dir);
+        //    //List<ApiRoute> li = new List<ApiRoute>();
+        //    //foreach (string file in files)
+        //    //{
+        //    //    if (file.IndexOf(".xml") == -1)
+        //    //        continue;
+        //    //    li.AddRange(XMLHelper.DeSerializeXML<List<ApiRoute>>(file));
+        //    //    try
+        //    //    {
+        //    //        li.AddRange(XMLHelper.DeSerializeXML<List<ApiRoute>>(file));
+        //    //    }
+        //    //    catch (Exception ex)
+        //    //    {
+        //    //        throw new ApplicationException(file + "文件格式错误");
+        //    //    }
+        //    //}
+        //    this.ApiRouteList = apiSvc.GetApiRouteList();
+        //}
     }
 }

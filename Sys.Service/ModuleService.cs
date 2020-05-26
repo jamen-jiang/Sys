@@ -15,9 +15,8 @@ namespace Sys.Service
         /// <summary>
         /// 获取模块树
         /// </summary>
-        /// <param name="request"></param>
         /// <returns></returns>
-        public ResponseGetModuleTree GetModuleTree(HttpApiRequest request)
+        public ApiResponse GetModuleTree()
         {
             using (var db = base.NewDB())
             {
@@ -32,28 +31,28 @@ namespace Sys.Service
                     CreateModuleTree(node, menus, m.Id, vMOperates,false);
                     tree.Add(node);
                 }
-                ResponseGetModuleTree response = new ResponseGetModuleTree();
-                response.Tree = tree;
+                ApiResponse response = new ApiResponse(Request, tree);
+                response.Data = tree;
                 return response;
             }
         }
         /// <summary>
         /// 添加模块
         /// </summary>
-        /// <param name="request"></param>
-        public void AddModule(RequestEditModule request)
+        public void AddModule()
         {
             using (var db = base.NewDB())
             {
-                if (db.Module.IsExist(request.Name))
+                RequestEditModule obj = ConvertToModel<RequestEditModule>();
+                if (db.Module.IsExist(obj.Name))
                     throw new ApplicationException("模块名称已存在!");
                 Module module = new Module();
-                module.Name = request.Name;
+                module.Name = obj.Name;
                 module.IsEnable = true;
-                module.Remark = request.Remark;
-                module.Sort = request.Sort;
-                module.Icon = request.Icon;
-                module.CreatedBy = request.UserId;
+                module.Remark = obj.Remark;
+                module.Sort = obj.Sort;
+                module.Icon = obj.Icon;
+                module.CreatedBy = obj.UserId;
                 module.CreatedOn = DateTime.Now;
                 db.Module.Add(module);
                 db.SaveChanges();
@@ -62,21 +61,21 @@ namespace Sys.Service
         /// <summary>
         /// 修改模块
         /// </summary>
-        /// <param name="request"></param>
-        public void EditModule(RequestEditModule request)
+        public void EditModule()
         {
             using (var db = base.NewDB())
             {
-                if (db.Module.IsExist(request.Name,request.Id))
+                RequestEditModule obj = ConvertToModel<RequestEditModule>();
+                if (db.Module.IsExist(obj.Name, obj.Id))
                     throw new ApplicationException("模块名称已存在!");
                 Module module = new Module();
-                module.Id = request.Id;
-                module.Name = request.Name;
-                module.IsEnable = request.IsEnable;
-                module.Remark = request.Remark;
-                module.Sort = request.Sort;
-                module.Icon = request.Icon;
-                module.UpdatedBy = request.UserId;
+                module.Id = obj.Id;
+                module.Name = obj.Name;
+                module.IsEnable = obj.IsEnable;
+                module.Remark = obj.Remark;
+                module.Sort = obj.Sort;
+                module.Icon = obj.Icon;
+                module.UpdatedBy = obj.UserId;
                 module.UpdatedOn = DateTime.Now;
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,13 +32,42 @@ namespace Sys.Domain
         Module,
         Operate,
     }
-    public enum HttpStatusCodeEnum
+    public enum ApiStatusEnum
     {
-        成功 = 200,
-        令牌无效 = 0,
-        令牌过期 = 1,
-        无权限 = 2,
-        程序异常 = 3,
-        系统异常 = 4
+        /// <summary>
+        /// 成功
+        /// </summary>
+        [Description("成功")]
+        SUCCESS = 200,
+        /// <summary>
+        /// 令牌无效
+        /// </summary>
+        [Description("令牌无效")]
+        FAIL_TOKEN_UNVALID = 1,
+        /// <summary>
+        /// 令牌过期
+        /// </summary>
+        [Description("令牌过期")]
+        EXPIRED_TOKEN_UNVALID = 2,
+        /// <summary>
+        /// 没访问权限
+        /// </summary>
+        [Description("没访问权限")]
+        FAIL_PERMISSION = 3,
+        /// <summary>
+        /// 应用程序错误
+        /// </summary>
+        [Description("应用程序错误")]
+        FAIL_APP = 98,
+        /// <summary>
+        /// 系统异常
+        /// </summary>
+        [Description("系统异常")]
+        FAIL_EXCEPTION = 99,
+        /// <summary>
+        /// 403
+        /// </summary>
+        [Description("403")]
+        FAIL_CODE = 403
     }
 }

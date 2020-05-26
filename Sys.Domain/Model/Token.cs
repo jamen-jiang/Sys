@@ -9,12 +9,10 @@ namespace Sys.Domain
     public class TokenSession
     {
         public TokenSession() { }
-        public TokenSession(int userId, List<ApiRoute> apiRouteList)
+        public TokenSession(int userId)
         {
             this.UserId = userId;
-            this.ApiRouteList = apiRouteList;
         }
         public int UserId { get; set; }
-        public List<ApiRoute> ApiRouteList { get; set; }
     }
 }

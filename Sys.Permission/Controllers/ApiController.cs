@@ -13,61 +13,22 @@ namespace Sys.Permission.Controllers
 {
     public class ApiController : BaseController
     {
-        
-        private ICmdService CmdSvc = Container.Resolve<ICmdService>();
         /// <summary>
         /// api入口
         /// </summary>
         /// <param name="code"></param>
         /// <param name="fc"></param>
         /// <returns></returns>
-        public ActionResult ProcessRequest(string code , FormCollection fc)
+        public ActionResult ProcessRequest()
         {
-            string token = Request.Headers.Get("token");
-            if (string.IsNullOrEmpty(code))
-            {
-               return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_CODE);
-            }
-            ApiRoute api = ApiRouteList.Where(w => w.Code == code).FirstOrDefault();
-            if (api == null)
-            {
-                return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_CODE);
-            }
-            if (!api.IsPublic)
-            {
-                if (token == null)
-                {
-                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_TOKEN_UNVALID);
-                }
-                Payload payload;
-                if (!JwtUtils.TryGetJwtDecode<Payload>(token, out payload))
-                {
-                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.EXPIRED_TOKEN_UNVALID);
-                }
-                TokenSession ts = Helper.Deserialize<TokenSession>(payload.data.ToString());
-                int count = ts.ApiRouteList.Count(c => c.Code == code);
-                if (count <= 0)
-                    return ApiActionResult.ErrorResult((int)StatusCodeEnum.FAIL_PERMISSION);
-                fc.Add("UserId", ts.UserId.ToString());
-            }
-            foreach (string key in Request.QueryString.AllKeys)
-            {
-                fc.Add(key, Request.QueryString[key]);
-            }
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-            fc.CopyTo(dict);
-            object r = CmdSvc.Execute(api, dict);
+            Request.Params.Add("Token", Request.Headers.Get("token"));
+            // 解析 Post Json 参数 
+            byte[] byts = new byte[Request.InputStream.Length];
+            Request.InputStream.Read(byts, 0, byts.Length);
+            string reqParams = System.Text.Encoding.UTF8.GetString(byts);
             ApiActionResult result = new ApiActionResult();
-            HttpApiResponse response = new HttpApiResponse();
-            response = r as HttpApiResponse;
-            if (response == null)
-            {
-                result.HttpApiResponse.Data = r;
-            }
-            else
-            {
-                result.HttpApiResponse = response;
-            }
+            ApiResponse response = Main.Process(reqParams);
+            result.Response = response;
             return result;
         }
     }
