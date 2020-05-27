@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace Sys.IService
 {
-    public partial interface IUserService
+    /// <summary>
+    /// 公共接口
+    /// </summary>
+    public interface ICommonService
     {
         /// <summary>
-        /// 获取用户列表
+        /// 登录
         /// </summary>
         /// <returns></returns>
-        ResponseGetUserList GetUserList(HttpApiRequest request);
+        ApiResponse Login();
         /// <summary>
-        /// 根据Id获取User
+        /// 主页
         /// </summary>
-        /// <param name="request"></param>
         /// <returns></returns>
-        ResponseGetUser GetUser(RequestGetUser request);
+        ApiResponse Layout();
     }
+
 }

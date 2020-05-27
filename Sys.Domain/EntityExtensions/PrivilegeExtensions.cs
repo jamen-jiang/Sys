@@ -70,9 +70,9 @@ namespace Sys.Domain
         /// <param name="access">领域对象(菜单或者按钮)</param>
         /// <param name="masterValues">主体对象Id</param>
         /// <returns></returns>
-        public static List<int> GetAccessValueList(this IQueryable<Privilege> query, MasterEnum master, AccessEnum sccess, params int [] masterValues)
+        public static List<int> GetAccessValueList(this IQueryable<Privilege> query, MasterEnum master, AccessEnum access, params int [] masterValues)
         {
-            return Get(query, master, sccess, masterValues).Select(s => s.AccessValue).ToList();
+            return Get(query, master, access, masterValues).Select(s => s.AccessValue).ToList();
         }
         /// <summary>
         /// 获取AccessValue的列表

@@ -10,13 +10,13 @@ namespace Sys.Domain
     {
         public PermissionTree()
         {
-            ModuleTreeList = new List<ModuleTree>();
-            MenuTreeList = new List<MenuTree>();
-            OperateTreeList = new List<OperateTree>();
+            ModuleList = new List<ModuleTree>();
+            MenuList = new List<MenuTree>();
+            OperateList = new List<OperateTree>();
         }
-        public List<ModuleTree> ModuleTreeList { get; set; }
-        public List<MenuTree> MenuTreeList { get; set; }
-        public List<OperateTree> OperateTreeList { get; set; }
+        public List<ModuleTree> ModuleList { get; set; }
+        public List<MenuTree> MenuList { get; set; }
+        public List<OperateTree> OperateList { get; set; }
     }
 
     public class ModuleTree

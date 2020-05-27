@@ -23,13 +23,18 @@ namespace Sys.Domain
     }
     public enum MasterEnum
     { 
+        [Description("角色")]
         Role = 0,
+        [Description("用户")]
         User = 1
     }
     public enum AccessEnum
-    { 
+    {
+        [Description("菜单")]
         Menu,
+        [Description("模块")]
         Module,
+        [Description("操作")]
         Operate,
     }
     public enum ApiStatusEnum

@@ -16,12 +16,9 @@ namespace Sys.Permission.Controllers
         /// <summary>
         /// api入口
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="fc"></param>
         /// <returns></returns>
-        public ActionResult ProcessRequest()
+        public ActionResult ProcessRequest(FormCollection fc)
         {
-            Request.Params.Add("Token", Request.Headers.Get("token"));
             // 解析 Post Json 参数 
             byte[] byts = new byte[Request.InputStream.Length];
             Request.InputStream.Read(byts, 0, byts.Length);

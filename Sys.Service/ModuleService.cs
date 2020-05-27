@@ -32,7 +32,6 @@ namespace Sys.Service
                     tree.Add(node);
                 }
                 ApiResponse response = new ApiResponse(Request, tree);
-                response.Data = tree;
                 return response;
             }
         }

@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IApiService.cs" />
     <Compile Include="ICmdService.cs" />
+    <Compile Include="ICommonService.cs" />
     <Compile Include="IMenuService.cs" />
     <Compile Include="IModuleService.cs" />
     <Compile Include="IOperateService.cs" />

@@ -14,7 +14,6 @@ namespace Sys.Permission.Controllers
 {
     public class BaseController : Controller
     {
-        private IApiService apiSvc = Container.Resolve<IApiService>();
         //protected HttpContextBase HttpContext
         //{
         //    get
@@ -42,12 +41,15 @@ namespace Sys.Permission.Controllers
         //{
         //    this.GetApiRoute();
         //}
-        //protected override void Initialize(RequestContext requestContext)
-        //{
-        //    base.Initialize(requestContext);
-        //    //HttpRequestBase request = requestContext.HttpContext.Request;//定义传统request对象
-        //}
-
+        protected override void Initialize(RequestContext requestContext)
+        {
+            //string token = requestContext.HttpContext.Request.Headers.Get("token");
+            //if (!string.IsNullOrEmpty(token))
+            //    requestContext.HttpContext.Request.Form["Token"] = token;
+            //requestContext.HttpContext.Request.Params.Add("Token", token);
+            base.Initialize(requestContext);
+            //HttpRequestBase request = requestContext.HttpContext.Request;//定义传统request对象
+        }
         protected override void OnException(ExceptionContext filterContext)
         {
             //base.OnException(filterContext);

@@ -11,7 +11,6 @@ namespace Sys.Domain
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public bool IsPublic { get; set; }
         public string AssemblyName { get; set; }
         public string ClassName { get; set; }
         public string MethodName { get; set; }

@@ -64,7 +64,7 @@ namespace Sys.Permission
             Type service = serviceObj.GetType();
             //获取方法
             MethodInfo method = service.GetMethod(methodName);
-            APINotNeedToken nt = (APINotNeedToken)Attribute.GetCustomAttribute(method, typeof(APINotNeedToken));
+            ApiNotNeedToken nt = (ApiNotNeedToken)Attribute.GetCustomAttribute(method, typeof(ApiNotNeedToken));
             if (nt == null || (!nt.NotNeedToken))
             {
                 //如果需要验证  
