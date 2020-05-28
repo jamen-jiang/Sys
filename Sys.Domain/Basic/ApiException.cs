@@ -52,6 +52,14 @@ namespace Sys.Domain
             Code = code;
         }
         /// <summary>
+        /// 错误代码
+        /// </summary>
+        /// <param name="code">代码</param>
+        public ApiException(ApiStatusEnum code)
+        {
+            Code = (int)code;
+        }
+        /// <summary>
         /// 错误信息
         /// </summary>
         /// <param name="message">错误信息</param>
@@ -67,6 +75,16 @@ namespace Sys.Domain
         public ApiException(int code, string message)
         {
             Code = code;
+            _message = message;
+        }
+        /// <summary>
+        /// 代码和信息
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <param name="message">错误信息</param>
+        public ApiException(ApiStatusEnum code, string message)
+        {
+            Code = (int)code;
             _message = message;
         }
     }

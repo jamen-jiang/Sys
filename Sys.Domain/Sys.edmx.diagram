@@ -5,17 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e8afcbe8aa654239ac33f32d3ae9b2d5" Name="Diagram1" DisplayType="true">
-        <EntityTypeShape EntityType="Sys.Domain.Api" Width="1.5" PointX="5" PointY="10.375" />
         <EntityTypeShape EntityType="Sys.Domain.Employee" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="Sys.Domain.Job" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Sys.Domain.Menu" Width="1.5" PointX="5" PointY="5.125" />
-        <EntityTypeShape EntityType="Sys.Domain.Module" Width="1.5" PointX="2.75" PointY="5.625" />
-        <EntityTypeShape EntityType="Sys.Domain.Operate" Width="1.5" PointX="7.25" PointY="5" />
+        <EntityTypeShape EntityType="Sys.Domain.Menu" Width="1.5" PointX="5" PointY="5" />
+        <EntityTypeShape EntityType="Sys.Domain.Module" Width="1.5" PointX="2.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Sys.Domain.Operate" Width="1.5" PointX="7.25" PointY="5.25" />
         <EntityTypeShape EntityType="Sys.Domain.Privilege" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="Sys.Domain.Role" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="Sys.Domain.Role_User" Width="1.5" PointX="3" PointY="1.625" />
         <EntityTypeShape EntityType="Sys.Domain.User" Width="1.5" PointX="0.75" PointY="5.75" />
-        <AssociationConnector Association="Sys.Domain.FK_Operate_Api_ApiId" />
         <AssociationConnector Association="Sys.Domain.FK_Menu_Module" />
         <AssociationConnector Association="Sys.Domain.FK_Operate_Menu_MenuId" />
         <AssociationConnector Association="Sys.Domain.FK_RoleUser_Role_RoleId" />

@@ -22,7 +22,7 @@ namespace Sys.Service
             {
                 List<Module> modules = db.Module.ToList();
                 List<Menu> menus = db.Menu.ToList();
-                List<Operate> operates = db.Operate.Where(x => x.IsPublic == false).ToList();
+                List<Operate> operates = db.Operate.ToList();
                 List<VMOperate> vMOperates = VMOperate.ToListPoCo(operates).ToList();
                 List<ModuleNode> tree = new List<ModuleNode>();
                 foreach (Module m in modules)

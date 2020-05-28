@@ -17,14 +17,14 @@ namespace Sys.Permission.Controllers
         /// api入口
         /// </summary>
         /// <returns></returns>
-        public ActionResult ProcessRequest(FormCollection fc)
+        public ActionResult ProcessRequest()
         {
             // 解析 Post Json 参数 
             byte[] byts = new byte[Request.InputStream.Length];
             Request.InputStream.Read(byts, 0, byts.Length);
             string reqParams = System.Text.Encoding.UTF8.GetString(byts);
-            ApiActionResult result = new ApiActionResult();
             ApiResponse response = Main.Process(reqParams);
+            ApiActionResult result = new ApiActionResult();
             result.Response = response;
             return result;
         }

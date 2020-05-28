@@ -1,4 +1,6 @@
-﻿using Sys.Common;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Sys.Common;
 using Sys.Domain;
 using Sys.Utility;
 using System;
@@ -13,6 +15,16 @@ namespace Sys.Service
     public abstract class BaseService
     {
         public ApiRequest Request { get; set; }
+        /// <summary>
+        /// 获取Post数据的参数
+        /// </summary>
+        public JObject Params
+        {
+            get
+            {
+                return Request.Params as JObject;
+            }
+        }
         /// <summary>
         /// API上下文信息
         /// </summary>
@@ -50,7 +62,7 @@ namespace Sys.Service
             try
             {
                 //UnixDateTimeConverter utc = new UnixDateTimeConverter();
-                t = Utils.Deserialize<T>(Request.Params.ToString());
+                t = JsonConvert.DeserializeObject<T>(Params.ToString());
             }
             catch (Exception ex)
             {

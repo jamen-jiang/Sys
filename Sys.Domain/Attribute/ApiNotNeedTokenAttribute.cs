@@ -8,14 +8,14 @@ namespace Sys.Domain
     /// <summary>
     /// 判断是否需要Token(登录)
     /// </summary>
-    public class ApiNotNeedToken : Attribute
+    public class ApiNotNeedTokenAttribute : Attribute
     {
-        public ApiNotNeedToken()
+        public ApiNotNeedTokenAttribute()
         {
             NotNeedToken = true;
         }
 
-        public ApiNotNeedToken(bool notNeedToken)
+        public ApiNotNeedTokenAttribute(bool notNeedToken)
         {
             NotNeedToken = notNeedToken;
         }

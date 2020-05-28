@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Basic\ApiCustomAttribute.cs" />
+    <Compile Include="Attribute\ApiNotNeedTokenAttribute.cs" />
     <Compile Include="Basic\ApiException.cs" />
     <Compile Include="Basic\ApiRoute.cs" />
     <Compile Include="Basic\BaseEntity.cs" />
@@ -63,13 +63,9 @@
     <Compile Include="EntityExtensions\MenuExtensions.cs" />
     <Compile Include="EntityExtensions\PrivilegeExtensions.cs" />
     <Compile Include="EntityExtensions\OperateExtensions.cs" />
-    <Compile Include="EntityExtensions\ApiExtensions.cs" />
     <Compile Include="EntityExtensions\ModuleExtensions.cs" />
     <Compile Include="EntityExtensions\UserExtensions.cs" />
     <Compile Include="EntityExtensions\RoleExtensions.cs" />
-    <Compile Include="Api.cs">
-      <DependentUpon>Sys.tt</DependentUpon>
-    </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>Sys.tt</DependentUpon>
     </Compile>

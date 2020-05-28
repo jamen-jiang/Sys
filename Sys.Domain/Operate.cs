@@ -16,14 +16,12 @@ namespace Sys.Domain
     {
         public int Id { get; set; }
         public Nullable<int> MenuId { get; set; }
-        public Nullable<int> ApiId { get; set; }
         public int Type { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public string Icon { get; set; }
         public Nullable<int> Sort { get; set; }
         public string Remark { get; set; }
-        public bool IsPublic { get; set; }
         public bool IsEnable { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedByName { get; set; }
@@ -32,7 +30,6 @@ namespace Sys.Domain
         public string UpdatedByName { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
-        public virtual Api Api { get; set; }
         public virtual Menu Menu { get; set; }
     }
 }

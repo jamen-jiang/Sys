@@ -25,7 +25,6 @@ namespace Sys.Domain
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Api> Api { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }

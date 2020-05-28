@@ -15,14 +15,12 @@ namespace Sys.Domain
             VMOperate model = new VMOperate();
             model.Id = operate.Id;
             model.MenuId = operate.MenuId;
-            model.ApiId = operate.ApiId;
             model.Type = Utils.GetEnumName<OperateTypeEnum>(operate.Type.ToString(),false);
             model.Code = operate.Code;
             model.Name = operate.Name;
             model.Icon = operate.Icon;
             model.Sort = operate.Sort;
             model.Remark = operate.Remark;
-            model.IsPublic = operate.IsPublic;
             model.IsEnable = operate.IsEnable;
             model.CreatedBy = operate.CreatedBy;
             model.CreatedOn = operate.CreatedOn;
