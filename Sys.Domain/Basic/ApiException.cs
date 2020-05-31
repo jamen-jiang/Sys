@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sys.Domain
-{
+{ 
     /// <summary>
     /// 自定义异常
     /// </summary>
